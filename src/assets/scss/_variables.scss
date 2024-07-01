@@ -1,0 +1,46 @@
+//
+// Colors
+//
+
+// General
+$white: #ffffff;
+//$primary: #437A08;
+$primary: #0F3D46;
+$light-gray: #f7f7f7;
+
+//$secondary: #f3b136;
+$secondary: #CC8A31;
+$secondary-off: #CA8730;
+
+$light-yellow: #fff8e1;
+$dark-bg: #19232A;
+$dark: #19232A;
+
+// Text
+$headings-color: black;
+$body-color: #7e7e8a;
+
+//
+// Typography
+//
+
+// Fonts
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+$font-family-base: "Roboto", sans-serif;
+$headings-font-family: "Roboto", sans-serif;
+
+// Size
+$font-size-base: 1.125rem; // 18px
+$h1-font-size: 48px;
+$h2-font-size: 35px;
+$h3-font-size: 28px;
+$h4-font-size: 25px;
+$h5-font-size: 22px;
+$h6-font-size: 16px;
+
+// Spacing
+$headings-margin-bottom: 1.5rem;
+$line-height-base: 1.75;
+
+// Misc
+$link-hover-decoration: none;

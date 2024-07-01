@@ -1,0 +1,37 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.section {
+  padding: 100px 0;
+}
+
+.unstyle-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-right: 0;
+}
+
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+}
+
+img[src*="#center"] {
+  display: block;
+  margin: auto;
+  @include ipad {
+    max-width: 100%;
+  }
+}
+
+.img-caption {
+  text-align: center;
+  color: gray;
+  font-size: small;
+  margin-top: -0.5rem;
+}
+
+.box_shadow {
+  box-shadow: 0 20px 40px rgba(50,65,141,.12);
+}

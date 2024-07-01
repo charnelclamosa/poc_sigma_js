@@ -1,0 +1,42 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en-us"
+paginate = 3
+theme = "portio"
+title = "Blank Hugo Website"
+
+# Site Parameters
+[params]
+description = ""
+keywords = ""
+
+postFix = ""
+custom_scss = ['scss/custom.scss']
+
+# Social icons
+[[params.social]]
+icon = "fa-facebook-official"
+url = "https://www.facebook.com/"
+weight = 1
+[[params.social]]
+icon = "fa-twitter-square"
+url = "http://twitter.com/"
+weight = 2
+[[params.social]]
+icon = "fa-linkedin-square"
+url = "https://www.linkedin.com/"
+weight = 3
+
+[taxonomies]
+tag = "tags"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML", "RSS"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[permalinks]
+  page = '/:filename/'
