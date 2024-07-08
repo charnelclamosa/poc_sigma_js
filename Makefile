@@ -1,11 +1,11 @@
-PROJECT = hugo_blank
+PROJECT = poc_sigma_js
 VERSION ?= latest
 IMAGE ?= $(PROJECT):$(VERSION)
 
-.PHONY: all data run test clean unittest
+.PHONY: build run test clean unittest
 HOST_DIR = $(shell pwd)
 
-MOUNT_HOSTDIR = -v ${HOST_DIR}/src:/${PROJECT}/src
+MOUNT_HOSTDIR = -v ${HOST_DIR}/src:/app/src
 EXPOSE_PORTS = -p 9007:9005 -p 1313:1313
 
 # Check if git submodules has initialized
