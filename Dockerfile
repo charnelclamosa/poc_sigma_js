@@ -1,9 +1,13 @@
 FROM klakegg/hugo:0.80.0-ext-alpine
 
 # labels
-LABEL maintainer="charnel.clamosa16@gmail.com"
+LABEL maintainer="charnel@zatonovo.com"
 
 COPY . /app
+
+WORKDIR /app
+
+RUN npm install
 
 WORKDIR /app/src
 
