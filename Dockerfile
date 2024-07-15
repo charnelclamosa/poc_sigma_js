@@ -9,8 +9,6 @@ WORKDIR /app
 
 RUN npm install
 
-WORKDIR /app/src
-
 EXPOSE 1313
 
-CMD ["server", "--themesDir", "../themes"]
+CMD ["server", "--themesDir", "./themes"]

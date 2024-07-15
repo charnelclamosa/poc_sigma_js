@@ -40,3 +40,4 @@ tag = "tags"
 
 [permalinks]
   page = '/:filename/'
+

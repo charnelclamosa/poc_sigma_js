@@ -12,6 +12,7 @@
     "@sigma/edge-curve": "^3.0.0-beta.13",
     "@sigma/node-image": "^3.0.0-beta.12",
     "graphology": "^0.25.4",
-    "sigma": "^3.0.0-beta.24"
+    "sigma": "^3.0.0-beta.24",
+    "console.table": "0.10.0"
   }
 }

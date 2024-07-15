@@ -5,7 +5,7 @@ IMAGE ?= $(PROJECT):$(VERSION)
 .PHONY: build run test clean unittest
 HOST_DIR = $(shell pwd)
 
-MOUNT_HOSTDIR = -v ${HOST_DIR}/src:/app/src
+MOUNT_HOSTDIR = -v ${HOST_DIR}:/app
 EXPOSE_PORTS = -p 9007:9005 -p 1313:1313
 
 # Check if git submodules has initialized
