@@ -1,10 +1,18 @@
 <div id="container" style="width: 800px; height: 600px; background: white"></div>
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa mollitia esse illo a? Ad quos enim cupiditate, earum tempora libero corrupti sapiente magni sit iste totam architecto neque quo ab?
 
-<script src="/js/sigma.js"></script>
-<script src="/js/console.js"></script>
+<!-- NOTE: `daysjs` is imported here -->
+{{ with resources.Get "js/main.js" }}
+  
+  {{ with . | js.Build }}
+  <p>{{ . }}</p>
+      <script src="{{ .RelPermalink }}"></script>
+  {{ end }}
+{{ end }}
+
+<!-- Note: `daysjs` will be used here -->
 <script>
-  foo()
-  bar()
+  console.log("hey");
+  
 </script>
 

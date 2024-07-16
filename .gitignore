@@ -75,3 +75,6 @@ themes/portio/*
 
 plantuml-images
 docs/plantuml-images
+
+.hugo_build.lock
+public
