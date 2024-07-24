@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import Sigma from "sigma"
 import { MultiGraph, Graph } from "graphology";
 import { createNodeImageProgram } from "@sigma/node-image"
@@ -8,8 +7,6 @@ import {
   indexParallelEdgesIndex
 } from "@sigma/edge-curve"
 import { EdgeArrowProgram } from "sigma/rendering"
-
-console.log(dayjs('2018-08-08'))
 
 // const graph = new Graph();
 // graph.addNode("1", { label: "Node 1", x: 0, y: 0, size: 10, color: "blue" });
@@ -29,23 +26,22 @@ function getCurvature(index, maxIndex) {
     return (maxCurvature * index) / maxIndex
 }
 
-const container = document.getElementById("container")
+const container = document.getElementById("first-table")
   
     // Create a graph, with various parallel edges:
     const graph = new MultiGraph()
     const nodeSize = 20
-    const arrowColor = "green"
-    const arrowSize = 3
+    const arrowSize = 7.5
   
     const firstCol = 0
-    const secondCol = 10
-    const thirdCol = 20
-    const fourthCol = 30
-    const fifthCol = 40
+    const secondCol = 3
+    const thirdCol = 6
+    const fourthCol = 9
   
     const firstRow = 0
-    const secondRow = -2
-    const thirdRow = -4
+    const secondRow = -0.75
+    const thirdRow = -1.5
+    const fourthRow = -2;25
   
     // Legend:
     // key: ID of the node.
@@ -59,84 +55,66 @@ const container = document.getElementById("container")
      * size: Size of the node.
      */
     const myNodes = [
-      // First row
+      // Plant
       {
-        key: "a_1",
-        label: "WCChw",
+        key: "plant_lightning_plant",
+        label: "Lightning Plant",
         col: firstCol,
         row: firstRow,
         size: nodeSize
       },
+      // Systems
       {
-        key: "a_2",
-        label: "WS Econ",
+        key: "systems_lighting_fixture_system",
+        label: "Lighting Fixture System",
         col: secondCol,
         row: firstRow,
         size: nodeSize
       },
       {
-        key: "a_3",
-        label: "L+t_L HE",
-        col: thirdCol,
-        row: firstRow,
-        size: nodeSize
-      },
-      {
-        key: "a_4",
-        label: "WT_im",
-        col: fourthCol,
-        row: firstRow,
-        size: nodeSize
-      },
-      {
-        key: "a_5",
-        label: "L+t+L",
-        col: fifthCol,
-        row: firstRow,
-        size: nodeSize
-      },
-      // Second row
-      {
-        key: "b_1",
-        label: "ACChW",
-        col: firstCol,
-        row: secondRow,
-        size: nodeSize
-      },
-      {
-        key: "b_2",
-        label: "WCChW",
+        key: "systems_electrical_distribution",
+        label: "Electrical Distribution",
         col: secondCol,
         row: secondRow,
         size: nodeSize
       },
+      // // Measurement Techniques
       {
-        key: "b_3",
-        label: "CSCV C&M",
+        key: "m_techniques_lighting_fixture_runtime",
+        label: "Lighting Fixture Runtime",
+        col: thirdCol,
+        row: firstRow,
+        size: nodeSize
+      },
+      {
+        key: "m_techniques_true_rms_power",
+        label: "True RMS Power",
         col: thirdCol,
         row: secondRow,
         size: nodeSize
       },
       {
-        key: "b_4",
-        label: "DiffWP&PC",
-        col: fourthCol,
-        row: secondRow,
-        size: nodeSize
-      },
-      { key: "b_5", label: "CT", col: fifthCol, row: secondRow, size: nodeSize },
-      // Third col
-      { key: "c_1", label: "AH", col: firstCol, row: thirdRow, size: nodeSize },
-      { key: "c_2", label: "CWL", col: secondCol, row: thirdRow, size: nodeSize },
-      {
-        key: "c_3",
-        label: "VSVV C&M",
+        key: "m_techniques_electrical_spot_measurements",
+        label: "Electrical Spot Measurements",
         col: thirdCol,
         row: thirdRow,
         size: nodeSize
       },
-      { key: "c_4", label: "WFR", col: fourthCol, row: thirdRow, size: nodeSize },
-      { key: "c_5", label: "AHU", col: fifthCol, row: thirdRow, size: nodeSize }
+      {
+        key: "m_techniques_electrical_current",
+        label: "Electrical Current",
+        col: thirdCol,
+        row: fourthRow,
+        size: nodeSize
+      },
+      // Calculation Methodology
+      {
+        key: "calc_methodology_lighting_energy_consumption",
+        label: "Lighting Energy Consumption",
+        col: fourthCol,
+        row: firstRow,
+        size: nodeSize
+      }
     ]
   
     // Create the nodes.
@@ -151,32 +129,19 @@ const container = document.getElementById("container")
       })
     })
   
-    // First row arrows
-    graph.addEdge("a_1", "a_2", { size: arrowSize })
-  
-    graph.addEdge("a_1", "a_3", { size: arrowSize })
-    graph.addEdge("a_1", "a_4", { size: arrowSize })
-    graph.addEdge("a_1", "a_5", { size: arrowSize })
-  
-    graph.addEdge("a_1", "b_2", { size: arrowSize })
-    graph.addEdge("a_1", "c_2", { size: arrowSize })
-    graph.addEdge("a_2", "a_3", { size: arrowSize })
-    graph.addEdge("a_3", "a_4", { size: arrowSize })
-    graph.addEdge("a_3", "a_5", { size: arrowSize })
-    graph.addEdge("a_3", "b_4", { size: arrowSize })
-    graph.addEdge("a_3", "c_4", { size: arrowSize })
-  
-    // Second row arrows
-    graph.addEdge("b_2", "b_3", { size: arrowSize })
-    graph.addEdge("b_2", "b_3", { size: arrowSize })
-  
-    // Third row arrows
-    graph.addEdge("c_4", "a_5", { size: arrowSize })
-    graph.addEdge("c_4", "b_5", { size: arrowSize })
-    graph.addEdge("c_4", "c_5", { size: arrowSize })
-    graph.addEdge("c_1", "a_2", { size: arrowSize })
-    graph.addEdge("c_1", "b_2", { size: arrowSize })
-    graph.addEdge("c_1", "c_2", { size: arrowSize })
+    // Construction edges
+    graph.addEdge("plant_lightning_plant", "systems_lighting_fixture_system", { size: arrowSize })
+    graph.addEdge("plant_lightning_plant", "systems_electrical_distribution", { size: arrowSize })
+    graph.addEdge("plant_lightning_plant", "m_techniques_lighting_fixture_runtime", { size: arrowSize })
+    graph.addEdge("plant_lightning_plant", "calc_methodology_lighting_energy_consumption", { size: arrowSize })
+    graph.addEdge("systems_lighting_fixture_system", "m_techniques_lighting_fixture_runtime", { size: arrowSize })
+    graph.addEdge("m_techniques_lighting_fixture_runtime", "calc_methodology_lighting_energy_consumption", { size: arrowSize })
+    graph.addEdge("systems_electrical_distribution", "m_techniques_true_rms_power", { size: arrowSize })
+    graph.addEdge("systems_electrical_distribution", "m_techniques_electrical_spot_measurements", { size: arrowSize })
+    graph.addEdge("systems_electrical_distribution", "m_techniques_electrical_current", { size: arrowSize })
+    graph.addEdge("m_techniques_true_rms_power", "calc_methodology_lighting_energy_consumption", { size: arrowSize })
+    graph.addEdge("m_techniques_electrical_spot_measurements", "calc_methodology_lighting_energy_consumption", { size: arrowSize })
+    graph.addEdge("m_techniques_electrical_current", "calc_methodology_lighting_energy_consumption", { size: arrowSize })
   
     // Use dedicated helper to identify parallel edges:
     indexParallelEdgesIndex(graph, {
@@ -255,6 +220,9 @@ const container = document.getElementById("container")
     })
     renderer.on("leaveNode", () => {
       setHoveredNode(undefined)
+    })
+    renderer.on("clickNode", (data) => {
+      console.log(data)
     })
   
     // Render nodes accordingly to the internal state:
