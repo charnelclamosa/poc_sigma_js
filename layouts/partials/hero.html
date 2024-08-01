@@ -18,6 +18,11 @@
     <h6>Table 2</h6>
     <div id="second-table" class="border" style="width: 80%; height: 450px;"></div>
   </section>
+
+  <section class="container-fluid">
+    <h6>Table 3</h6>
+    <div id="third-table" class="border" style="width: 80%; height: 800px;"></div>
+  </section>
 </section>
 
 {{ with resources.Get "js/main.js" }}
@@ -31,5 +36,12 @@
       <script src="{{ .RelPermalink }}"></script>
   {{ end }}
 {{ end }}
+
+{{ with resources.Get "js/thirdTable.js" }}
+  {{ with . | js.Build }}
+      <script src="{{ .RelPermalink }}"></script>
+  {{ end }}
+{{ end }}
+
 
 
