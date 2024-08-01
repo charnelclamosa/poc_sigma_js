@@ -8,17 +8,28 @@
     <li>Calculation Methodology</li>
   </ul>
 </div>
-<section class="container-fluid">
-  <h6>Table 1</h6>
-  <div id="first-table" class="border" style="width: 100%; height: 400px;"></div>
+<section class="d-flex flex-column">
+  <section class="container-fluid">
+    <h6>Table 1</h6>
+    <div id="first-table" class="border" style="width: 80%; height: 400px;"></div>
+  </section>
+  
+  <section class="container-fluid">
+    <h6>Table 2</h6>
+    <div id="second-table" class="border" style="width: 80%; height: 450px;"></div>
+  </section>
 </section>
 
-
-<!-- NOTE: `daysjs` is imported here -->
 {{ with resources.Get "js/main.js" }}
-  
   {{ with . | js.Build }}
       <script src="{{ .RelPermalink }}"></script>
   {{ end }}
 {{ end }}
+
+{{ with resources.Get "js/secondTable.js" }}
+  {{ with . | js.Build }}
+      <script src="{{ .RelPermalink }}"></script>
+  {{ end }}
+{{ end }}
+
 
