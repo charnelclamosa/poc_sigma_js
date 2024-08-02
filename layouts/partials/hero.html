@@ -10,34 +10,11 @@
 </div>
 <section class="d-flex flex-column">
   <section class="container-fluid">
-    <h6>Table 1</h6>
-    <div id="first-table" class="border" style="width: 80%; height: 400px;"></div>
-  </section>
-  
-  <section class="container-fluid">
-    <h6>Table 2</h6>
-    <div id="second-table" class="border" style="width: 80%; height: 450px;"></div>
-  </section>
-
-  <section class="container-fluid">
-    <h6>Table 3</h6>
-    <div id="third-table" class="border" style="width: 80%; height: 800px;"></div>
+    <div id="first-table" class="border" style="width: 80%; height: 1200px;"></div>
   </section>
 </section>
 
 {{ with resources.Get "js/main.js" }}
-  {{ with . | js.Build }}
-      <script src="{{ .RelPermalink }}"></script>
-  {{ end }}
-{{ end }}
-
-{{ with resources.Get "js/secondTable.js" }}
-  {{ with . | js.Build }}
-      <script src="{{ .RelPermalink }}"></script>
-  {{ end }}
-{{ end }}
-
-{{ with resources.Get "js/thirdTable.js" }}
   {{ with . | js.Build }}
       <script src="{{ .RelPermalink }}"></script>
   {{ end }}
