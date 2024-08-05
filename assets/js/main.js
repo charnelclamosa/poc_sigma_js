@@ -1,12 +1,12 @@
 import Sigma from "sigma"
-import { MultiGraph, Graph } from "graphology";
+import { Graph } from "graphology";
 import { createNodeImageProgram } from "@sigma/node-image"
 import {
   DEFAULT_EDGE_CURVATURE,
   EdgeCurvedArrowProgram,
   indexParallelEdgesIndex
 } from "@sigma/edge-curve"
-import { EdgeArrowProgram, NodeCircleProgram } from "sigma/rendering"
+import { EdgeArrowProgram, NodeCircleProgram, NodePointProgram } from "sigma/rendering"
 import nodes_config from "./nodes"
 
 const PLANTS = nodes_config.plants
@@ -40,7 +40,7 @@ const EDGE_SIZE = 5
 
 const container = document.getElementById("first-table")
 // Create a graph, with various parallel edges:
-const graph = new MultiGraph()
+const graph = new Graph()
 
 function getCurvature(index, maxIndex) {
     if (maxIndex <= 0) throw new Error("Invalid maxIndex")
@@ -465,11 +465,13 @@ const myNodes = [
 // Create the nodes.
 myNodes.forEach(value => {
   graph.addNode(value.key, {
+    forceLabel: true,
     label: value.label,
     x: value.col,
     y: value.row,
     size: value.size,
-    url: value.url
+    url: value.url,
+    type: "square"
   })
 })
 
@@ -1072,8 +1074,9 @@ graph.forEachEdge(
 const renderer = new Sigma(graph, container, {
   allowInvalidContainer: true,
   defaultEdgeType: "straight",
+  defaultNodeType: "square",
   nodeProgramClasses: {
-    image: createNodeImageProgram()
+    square: NodeCircleProgram
   },
   edgeProgramClasses: {
     straight: EdgeArrowProgram,
