@@ -6,7 +6,7 @@ import {
   EdgeCurvedArrowProgram,
   indexParallelEdgesIndex
 } from "@sigma/edge-curve"
-import { EdgeArrowProgram } from "sigma/rendering"
+import { EdgeArrowProgram, NodeCircleProgram } from "sigma/rendering"
 import nodes_config from "./nodes"
 
 const PLANTS = nodes_config.plants
@@ -469,8 +469,6 @@ myNodes.forEach(value => {
     x: value.col,
     y: value.row,
     size: value.size,
-    type: "image",
-    image: "https://icons.getbootstrap.com/assets/icons/person.svg",
     url: value.url
   })
 })
@@ -598,11 +596,6 @@ graph.addEdge(
 graph.addEdge(
   COMPONENTS.const_spd_const_vol_compressor_motor.key, 
   MEASUREMENT_TECHNIQUE.true_rms_power.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.const_spd_const_vol_compressor_motor.key, 
-  MEASUREMENT_TECHNIQUE.outdoor_air_temp.key, 
   { size: EDGE_SIZE }
 )
 graph.addEdge(
@@ -737,26 +730,6 @@ graph.addEdge(
 )
 // Components -> Measurement Techniques
 graph.addEdge(
-  COMPONENTS.const_spd_const_vol_pump_motor.key, 
-  MEASUREMENT_TECHNIQUE.electrical_spot_measurements.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.const_spd_const_vol_pump_motor.key, 
-  MEASUREMENT_TECHNIQUE.motor_runtime.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_pump_motor.key, 
-  MEASUREMENT_TECHNIQUE.true_rms_power.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_pump_motor.key, 
-  MEASUREMENT_TECHNIQUE.outdoor_air_temp.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
   COMPONENTS.const_spd_const_vol_fan_motor.key, 
   MEASUREMENT_TECHNIQUE.electrical_spot_measurements.key, 
   { size: EDGE_SIZE }
@@ -792,63 +765,8 @@ graph.addEdge(
   { size: EDGE_SIZE }
 )
 graph.addEdge(
-  COMPONENTS.const_spd_const_vol_pump_motor.key, 
-  MEASUREMENT_TECHNIQUE.electrical_spot_measurements.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.const_spd_const_vol_pump_motor.key, 
-  MEASUREMENT_TECHNIQUE.motor_runtime.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_pump_motor.key, 
-  MEASUREMENT_TECHNIQUE.true_rms_power.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_pump_motor.key, 
-  MEASUREMENT_TECHNIQUE.outdoor_air_temp.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.const_spd_const_vol_compressor_motor.key, 
-  MEASUREMENT_TECHNIQUE.true_rms_power.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.const_spd_const_vol_compressor_motor.key, 
-  MEASUREMENT_TECHNIQUE.pipe_surface_water_temp.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
   COMPONENTS.const_spd_const_vol_compressor_motor.key, 
   MEASUREMENT_TECHNIQUE.outdoor_air_temp.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.const_spd_const_vol_compressor_motor.key, 
-  MEASUREMENT_TECHNIQUE.water_flow_rate.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_compressor_motor.key, 
-  MEASUREMENT_TECHNIQUE.true_rms_power.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_compressor_motor.key, 
-  MEASUREMENT_TECHNIQUE.pipe_surface_water_temp.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_compressor_motor.key, 
-  MEASUREMENT_TECHNIQUE.outdoor_air_temp.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_compressor_motor.key, 
-  MEASUREMENT_TECHNIQUE.water_flow_rate.key, 
   { size: EDGE_SIZE }
 )
 graph.addEdge(
@@ -862,26 +780,6 @@ graph.addEdge(
   { size: EDGE_SIZE }
 )
 // Measurement Techniques -> Calculation Methodology
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.electrical_spot_measurements.key, 
-  CALCULATION_METHODOLOGY.pump_motors_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.motor_runtime.key, 
-  CALCULATION_METHODOLOGY.pump_motors_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.true_rms_power.key, 
-  CALCULATION_METHODOLOGY.pump_motors_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.outdoor_air_temp.key, 
-  CALCULATION_METHODOLOGY.pump_motors_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
 graph.addEdge(
   MEASUREMENT_TECHNIQUE.electrical_spot_measurements.key, 
   CALCULATION_METHODOLOGY.cooling_towers_fans_energy_consumption.key, 
@@ -973,26 +871,6 @@ graph.addEdge(
 )
 // Components -> Measurement Techniques
 graph.addEdge(
-  COMPONENTS.const_spd_const_vol_fan_motor.key, 
-  MEASUREMENT_TECHNIQUE.electrical_spot_measurements.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.const_spd_const_vol_fan_motor.key, 
-  MEASUREMENT_TECHNIQUE.motor_runtime.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_fan_motor.key, 
-  MEASUREMENT_TECHNIQUE.true_rms_power.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_fan_motor.key, 
-  MEASUREMENT_TECHNIQUE.outdoor_air_temp.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
   COMPONENTS.air_to_air_heat_exchanger.key, 
   MEASUREMENT_TECHNIQUE.true_rms_power.key, 
   { size: EDGE_SIZE }
@@ -1079,11 +957,6 @@ graph.addEdge(
 // Systems -> Components
 graph.addEdge(
   SYSTEMS.boiler.key, 
-  COMPONENTS.const_spd_const_vol_fan_motor.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  SYSTEMS.boiler.key, 
   COMPONENTS.var_spd_var_vol_fan_motor.key, 
   { size: EDGE_SIZE }
 )
@@ -1100,93 +973,13 @@ graph.addEdge(
 // Components -> Measurement Techniques
 graph.addEdge(
   COMPONENTS.const_spd_const_vol_fan_motor.key, 
-  MEASUREMENT_TECHNIQUE.motor_runtime.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.const_spd_const_vol_fan_motor.key, 
   MEASUREMENT_TECHNIQUE.electrical_current.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.const_spd_const_vol_fan_motor.key, 
-  MEASUREMENT_TECHNIQUE.electrical_spot_measurements.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_fan_motor.key, 
-  MEASUREMENT_TECHNIQUE.true_rms_power.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_fan_motor.key, 
-  MEASUREMENT_TECHNIQUE.outdoor_air_temp.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.const_spd_const_vol_pump_motor.key, 
-  MEASUREMENT_TECHNIQUE.motor_runtime.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.const_spd_const_vol_pump_motor.key, 
-  MEASUREMENT_TECHNIQUE.electrical_spot_measurements.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_pump_motor.key, 
-  MEASUREMENT_TECHNIQUE.outdoor_air_temp.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_pump_motor.key, 
-  MEASUREMENT_TECHNIQUE.true_rms_power.key, 
   { size: EDGE_SIZE }
 )
 // Measurement Techniques -> Calculation Methodology
 graph.addEdge(
-  MEASUREMENT_TECHNIQUE.motor_runtime.key, 
-  CALCULATION_METHODOLOGY.fan_motor_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
   MEASUREMENT_TECHNIQUE.electrical_current.key, 
   CALCULATION_METHODOLOGY.fan_motor_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.electrical_spot_measurements.key, 
-  CALCULATION_METHODOLOGY.fan_motor_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.true_rms_power.key, 
-  CALCULATION_METHODOLOGY.fan_motor_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.outdoor_air_temp.key, 
-  CALCULATION_METHODOLOGY.fan_motor_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.motor_runtime.key, 
-  CALCULATION_METHODOLOGY.pump_motors_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.electrical_spot_measurements.key, 
-  CALCULATION_METHODOLOGY.pump_motors_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.outdoor_air_temp.key, 
-  CALCULATION_METHODOLOGY.pump_motors_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.true_rms_power.key, 
-  CALCULATION_METHODOLOGY.pump_motors_energy_consumption.key, 
   { size: EDGE_SIZE }
 )
 
@@ -1229,11 +1022,6 @@ graph.addEdge(
   { size: EDGE_SIZE }
 )
 graph.addEdge(
-  SYSTEMS.boiler.key, 
-  COMPONENTS.var_spd_var_vol_fan_motor.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
   SYSTEMS.steam_condensate_recovery_s.key, 
   COMPONENTS.const_spd_const_vol_pump_motor.key, 
   { size: EDGE_SIZE }
@@ -1251,93 +1039,6 @@ graph.addEdge(
 graph.addEdge(
   SYSTEMS.steam_distribution_s.key, 
   COMPONENTS.var_spd_var_vol_pump_motor.key, 
-  { size: EDGE_SIZE }
-)
-// Components -> Measurement Techniques
-graph.addEdge(
-  COMPONENTS.const_spd_const_vol_pump_motor.key, 
-  MEASUREMENT_TECHNIQUE.motor_runtime.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.const_spd_const_vol_pump_motor.key, 
-  MEASUREMENT_TECHNIQUE.electrical_spot_measurements.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_pump_motor.key, 
-  MEASUREMENT_TECHNIQUE.true_rms_power.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_pump_motor.key, 
-  MEASUREMENT_TECHNIQUE.outdoor_air_temp.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.const_spd_const_vol_fan_motor.key, 
-  MEASUREMENT_TECHNIQUE.motor_runtime.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.const_spd_const_vol_fan_motor.key, 
-  MEASUREMENT_TECHNIQUE.electrical_spot_measurements.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_fan_motor.key, 
-  MEASUREMENT_TECHNIQUE.true_rms_power.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  COMPONENTS.var_spd_var_vol_fan_motor.key, 
-  MEASUREMENT_TECHNIQUE.outdoor_air_temp.key, 
-  { size: EDGE_SIZE }
-)
-// Measurement Techniques -> Calculation Methodology
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.motor_runtime.key, 
-  CALCULATION_METHODOLOGY.pump_motors_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.electrical_spot_measurements.key, 
-  CALCULATION_METHODOLOGY.pump_motors_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.true_rms_power.key, 
-  CALCULATION_METHODOLOGY.pump_motors_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.outdoor_air_temp.key, 
-  CALCULATION_METHODOLOGY.pump_motors_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.motor_runtime.key, 
-  CALCULATION_METHODOLOGY.fan_motor_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.electrical_spot_measurements.key, 
-  CALCULATION_METHODOLOGY.fan_motor_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.true_rms_power.key, 
-  CALCULATION_METHODOLOGY.fan_motor_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.outdoor_air_temp.key, 
-  CALCULATION_METHODOLOGY.fan_motor_energy_consumption.key, 
-  { size: EDGE_SIZE }
-)
-graph.addEdge(
-  MEASUREMENT_TECHNIQUE.motor_runtime.key, 
-  CALCULATION_METHODOLOGY.pump_motors_energy_consumption.key, 
   { size: EDGE_SIZE }
 )
 
@@ -1371,7 +1072,6 @@ graph.forEachEdge(
 const renderer = new Sigma(graph, container, {
   allowInvalidContainer: true,
   defaultEdgeType: "straight",
-  defaultNodeType: "image",
   nodeProgramClasses: {
     image: createNodeImageProgram()
   },
