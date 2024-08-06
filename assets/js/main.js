@@ -6,8 +6,9 @@ import {
   EdgeCurvedArrowProgram,
   indexParallelEdgesIndex
 } from "@sigma/edge-curve"
-import { EdgeArrowProgram, NodeCircleProgram, NodePointProgram } from "sigma/rendering"
+import { EdgeArrowProgram, NodeCircleProgram } from "sigma/rendering"
 import nodes_config from "./nodes"
+import NodeGradientProgram from "./node-gradient";
 
 const PLANTS = nodes_config.plants
 const SYSTEMS = nodes_config.systems
@@ -471,7 +472,7 @@ myNodes.forEach(value => {
     y: value.row,
     size: value.size,
     url: value.url,
-    type: "square"
+    type: "gradient"
   })
 })
 
@@ -1044,6 +1045,21 @@ graph.addEdge(
   { size: EDGE_SIZE }
 )
 
+const renderer = new Sigma(graph, container, {
+  allowInvalidContainer: true,
+  defaultEdgeType: "straight",
+  defaultNodeType: "square",
+  nodeProgramClasses: {
+    square: NodeCircleProgram,
+    circle: NodeCircleProgram,
+    gradient: NodeGradientProgram
+  },
+  edgeProgramClasses: {
+    straight: EdgeArrowProgram,
+    curved: EdgeCurvedArrowProgram
+  }
+})
+
 
 // Use dedicated helper to identify parallel edges:
 indexParallelEdgesIndex(graph, {
@@ -1071,18 +1087,6 @@ graph.forEachEdge(
   }
 )
 
-const renderer = new Sigma(graph, container, {
-  allowInvalidContainer: true,
-  defaultEdgeType: "straight",
-  defaultNodeType: "square",
-  nodeProgramClasses: {
-    square: NodeCircleProgram
-  },
-  edgeProgramClasses: {
-    straight: EdgeArrowProgram,
-    curved: EdgeCurvedArrowProgram
-  }
-})
 
 const state = { searchQuery: "" }
 
