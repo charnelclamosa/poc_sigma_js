@@ -24,9 +24,9 @@ void main() {
   // Multiply the point size twice:
   //  - x SCALING_RATIO to correct the canvas scaling
   //  - x 2 to correct the formulae
-  gl_PointSize = a_size / u_sizeRatio * u_pixelRatio * 2.0;
+  gl_PointSize = a_size / u_sizeRatio * u_pixelRatio * 2.75;
 
-  v_border = (0.5 / a_size) * u_sizeRatio;
+  v_border = (0.75 / a_size) * u_sizeRatio;
 
   #ifdef PICKING_MODE
   // For picking mode, we use the ID as the color:

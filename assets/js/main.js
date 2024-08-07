@@ -36,7 +36,7 @@ const ROW_13 = -12
 const ROW_14 = -13
 const ROW_15 = -14
 const ROW_16 = -15
-const NODE_SIZE = 20
+const NODE_SIZE = 15
 const EDGE_SIZE = 5
 
 const container = document.getElementById("first-table")
