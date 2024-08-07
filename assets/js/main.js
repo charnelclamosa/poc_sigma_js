@@ -1,6 +1,7 @@
 import Sigma from "sigma"
 import { Graph } from "graphology";
 import { createNodeImageProgram } from "@sigma/node-image"
+import { NodeBorderProgram } from "@sigma/node-border";
 import {
   DEFAULT_EDGE_CURVATURE,
   EdgeCurvedArrowProgram,
@@ -15,6 +16,11 @@ const SYSTEMS = nodes_config.systems
 const COMPONENTS = nodes_config.components
 const MEASUREMENT_TECHNIQUE = nodes_config.measurement_technicques
 const CALCULATION_METHODOLOGY = nodes_config.calculation_methodology
+const PLANT_COLOR = "#148f77"
+const SYSTEM_COLOR = "#1f618d"
+const COMPONENT_COLOR = "#76448a"
+const MT_COLOR = "#b03a2e"
+const CM_COLOR = "#f1c40f"
 const COL_1 = 0
 const COL_2 = 4
 const COL_3 = 8
@@ -71,7 +77,8 @@ const myNodes = [
     col: COL_1,
     row: ROW_1,
     size: NODE_SIZE,
-    url: PLANTS.lighting_p.url
+    url: PLANTS.lighting_p.url,
+    color: PLANT_COLOR
   },
   {
     key: PLANTS.air_cooled_chilled_water_p.key,
@@ -79,7 +86,8 @@ const myNodes = [
     col: COL_1,
     row: ROW_3,
     size: NODE_SIZE,
-    url: PLANTS.air_cooled_chilled_water_p.url
+    url: PLANTS.air_cooled_chilled_water_p.url,
+    color: PLANT_COLOR
   },
   {
     key: PLANTS.water_cooled_chilled_water_p.key,
@@ -87,7 +95,8 @@ const myNodes = [
     col: COL_1,
     row: ROW_6,
     size: NODE_SIZE,
-    url: PLANTS.water_cooled_chilled_water_p.url
+    url: PLANTS.water_cooled_chilled_water_p.url,
+    color: PLANT_COLOR
   },
   {
     key: PLANTS.air_handling_p.key,
@@ -95,7 +104,8 @@ const myNodes = [
     col: COL_1,
     row: ROW_9,
     size: NODE_SIZE,
-    url: PLANTS.air_handling_p.url
+    url: PLANTS.air_handling_p.url,
+    color: PLANT_COLOR
   },
   {
     key: PLANTS.hot_water_heating_p.key,
@@ -103,7 +113,8 @@ const myNodes = [
     col: COL_1,
     row: ROW_12,
     size: NODE_SIZE,
-    url: PLANTS.hot_water_heating_p.url
+    url: PLANTS.hot_water_heating_p.url,
+    color: PLANT_COLOR
   },
   {
     key: PLANTS.steam_p.key,
@@ -111,7 +122,8 @@ const myNodes = [
     col: COL_1,
     row: ROW_15,
     size: NODE_SIZE,
-    url: PLANTS.steam_p.url
+    url: PLANTS.steam_p.url,
+    color: PLANT_COLOR
   },
   // Systems
   {
@@ -120,7 +132,8 @@ const myNodes = [
     col: COL_2,
     row: ROW_1,
     size: NODE_SIZE,
-    url: SYSTEMS.lighting_fixture_s.url
+    url: SYSTEMS.lighting_fixture_s.url,
+    color: SYSTEM_COLOR
   },
   {
     key: SYSTEMS.electrical_distribution_s.key,
@@ -128,7 +141,8 @@ const myNodes = [
     col: COL_2,
     row: ROW_2,
     size: NODE_SIZE,
-    url: SYSTEMS.electrical_distribution_s.url
+    url: SYSTEMS.electrical_distribution_s.url,
+    color: SYSTEM_COLOR
   },
   {
     key: SYSTEMS.chilled_water_loop_s.key,
@@ -136,7 +150,8 @@ const myNodes = [
     col: COL_2,
     row: ROW_3,
     size: NODE_SIZE,
-    url: SYSTEMS.chilled_water_loop_s.url
+    url: SYSTEMS.chilled_water_loop_s.url,
+    color: SYSTEM_COLOR
   },
   {
     key: SYSTEMS.air_cooled_chiller_s.key,
@@ -144,7 +159,8 @@ const myNodes = [
     col: COL_2,
     row: ROW_4,
     size: NODE_SIZE,
-    url: SYSTEMS.air_cooled_chiller_s.url
+    url: SYSTEMS.air_cooled_chiller_s.url,
+    color: SYSTEM_COLOR
   },
   {
     key: SYSTEMS.chilled_water_loop.key,
@@ -152,7 +168,8 @@ const myNodes = [
     col: COL_2,
     row: ROW_5,
     size: NODE_SIZE,
-    url: SYSTEMS.chilled_water_loop.url
+    url: SYSTEMS.chilled_water_loop.url,
+    color: SYSTEM_COLOR
   },
   {
     key: SYSTEMS.condenser_water_loop.key,
@@ -160,7 +177,8 @@ const myNodes = [
     col: COL_2,
     row: ROW_6,
     size: NODE_SIZE,
-    url: SYSTEMS.condenser_water_loop.url
+    url: SYSTEMS.condenser_water_loop.url,
+    color: SYSTEM_COLOR
   },
   {
     key: SYSTEMS.water_cooled_chiller.key,
@@ -168,7 +186,8 @@ const myNodes = [
     col: COL_2,
     row: ROW_7,
     size: NODE_SIZE,
-    url: SYSTEMS.water_cooled_chiller.url
+    url: SYSTEMS.water_cooled_chiller.url,
+    color: SYSTEM_COLOR
   },
   {
     key: SYSTEMS.waterside_economizer.key,
@@ -176,7 +195,8 @@ const myNodes = [
     col: COL_2,
     row: ROW_8,
     size: NODE_SIZE,
-    url: SYSTEMS.waterside_economizer.url
+    url: SYSTEMS.waterside_economizer.url,
+    color: SYSTEM_COLOR
   },
   {
     key: SYSTEMS.const_spd_const_vol_air_handling_unit.key,
@@ -184,7 +204,8 @@ const myNodes = [
     col: COL_2,
     row: ROW_9,
     size: NODE_SIZE,
-    url: SYSTEMS.const_spd_const_vol_air_handling_unit.url
+    url: SYSTEMS.const_spd_const_vol_air_handling_unit.url,
+    color: SYSTEM_COLOR
   },
   {
     key: SYSTEMS.var_spd_var_vol_air_handling_unit.key,
@@ -192,7 +213,8 @@ const myNodes = [
     col: COL_2,
     row: ROW_10,
     size: NODE_SIZE,
-    url: SYSTEMS.var_spd_var_vol_air_handling_unit.url
+    url: SYSTEMS.var_spd_var_vol_air_handling_unit.url,
+    color: SYSTEM_COLOR
   },
   {
     key: SYSTEMS.air_to_air_energy_recovery.key,
@@ -200,7 +222,8 @@ const myNodes = [
     col: COL_2,
     row: ROW_11,
     size: NODE_SIZE,
-    url: SYSTEMS.air_to_air_energy_recovery.url
+    url: SYSTEMS.air_to_air_energy_recovery.url,
+    color: SYSTEM_COLOR
   },
   {
     key: SYSTEMS.boiler.key,
@@ -208,7 +231,8 @@ const myNodes = [
     col: COL_2,
     row: ROW_12,
     size: NODE_SIZE,
-    url: SYSTEMS.boiler.url
+    url: SYSTEMS.boiler.url,
+    color: SYSTEM_COLOR
   },
   {
     key: SYSTEMS.hot_water_loop.key,
@@ -216,7 +240,8 @@ const myNodes = [
     col: COL_2,
     row: ROW_13,
     size: NODE_SIZE,
-    url: SYSTEMS.hot_water_loop.url
+    url: SYSTEMS.hot_water_loop.url,
+    color: SYSTEM_COLOR
   },
   {
     key: SYSTEMS.feedwater_s.key,
@@ -224,7 +249,8 @@ const myNodes = [
     col: COL_2,
     row: ROW_14,
     size: NODE_SIZE,
-    url: SYSTEMS.feedwater_s.url
+    url: SYSTEMS.feedwater_s.url,
+    color: SYSTEM_COLOR
   },
   {
     key: SYSTEMS.steam_condensate_recovery_s.key,
@@ -232,7 +258,8 @@ const myNodes = [
     col: COL_2,
     row: ROW_15,
     size: NODE_SIZE,
-    url: SYSTEMS.steam_condensate_recovery_s.url
+    url: SYSTEMS.steam_condensate_recovery_s.url,
+    color: SYSTEM_COLOR
   },
   {
     key: SYSTEMS.steam_distribution_s.key,
@@ -240,7 +267,8 @@ const myNodes = [
     col: COL_2,
     row: ROW_16,
     size: NODE_SIZE,
-    url: SYSTEMS.steam_distribution_s.url
+    url: SYSTEMS.steam_distribution_s.url,
+    color: SYSTEM_COLOR
   },
   // Components
   {
@@ -249,7 +277,8 @@ const myNodes = [
     col: COL_3,
     row: ROW_1,
     size: NODE_SIZE,
-    url: COMPONENTS.const_spd_const_vol_pump_motor.url
+    url: COMPONENTS.const_spd_const_vol_pump_motor.url,
+    color: COMPONENT_COLOR
   },
   {
     key: COMPONENTS.var_spd_var_vol_pump_motor.key,
@@ -257,7 +286,8 @@ const myNodes = [
     col: COL_3,
     row: ROW_3,
     size: NODE_SIZE,
-    url: COMPONENTS.var_spd_var_vol_pump_motor.url
+    url: COMPONENTS.var_spd_var_vol_pump_motor.url,
+    color: COMPONENT_COLOR
   },
   {
     key: COMPONENTS.const_spd_const_vol_compressor_motor.key,
@@ -265,7 +295,8 @@ const myNodes = [
     col: COL_3,
     row: ROW_5,
     size: NODE_SIZE,
-    url: COMPONENTS.const_spd_const_vol_compressor_motor.url
+    url: COMPONENTS.const_spd_const_vol_compressor_motor.url,
+    color: COMPONENT_COLOR
   },
   {
     key: COMPONENTS.var_spd_var_vol_compressor_motor.key,
@@ -273,7 +304,8 @@ const myNodes = [
     col: COL_3,
     row: ROW_7,
     size: NODE_SIZE,
-    url: COMPONENTS.var_spd_var_vol_compressor_motor.url
+    url: COMPONENTS.var_spd_var_vol_compressor_motor.url,
+    color: COMPONENT_COLOR
   },
   {
     key: COMPONENTS.const_spd_const_vol_fan_motor.key,
@@ -281,7 +313,8 @@ const myNodes = [
     col: COL_3,
     row: ROW_9,
     size: NODE_SIZE,
-    url: COMPONENTS.const_spd_const_vol_fan_motor.url
+    url: COMPONENTS.const_spd_const_vol_fan_motor.url,
+    color: COMPONENT_COLOR
   },
   {
     key: COMPONENTS.var_spd_var_vol_fan_motor.key,
@@ -289,7 +322,8 @@ const myNodes = [
     col: COL_3,
     row: ROW_11,
     size: NODE_SIZE,
-    url: COMPONENTS.var_spd_var_vol_fan_motor.url
+    url: COMPONENTS.var_spd_var_vol_fan_motor.url,
+    color: COMPONENT_COLOR
   },
   {
     key: COMPONENTS.liquid_to_liquid_heat_exchanger.key,
@@ -297,7 +331,8 @@ const myNodes = [
     col: COL_3,
     row: ROW_13,
     size: NODE_SIZE,
-    url: COMPONENTS.liquid_to_liquid_heat_exchanger.url
+    url: COMPONENTS.liquid_to_liquid_heat_exchanger.url,
+    color: COMPONENT_COLOR
   },
   {
     key: COMPONENTS.air_to_air_heat_exchanger.key,
@@ -305,7 +340,8 @@ const myNodes = [
     col: COL_3,
     row: ROW_15,
     size: NODE_SIZE,
-    url: COMPONENTS.air_to_air_heat_exchanger.url
+    url: COMPONENTS.air_to_air_heat_exchanger.url,
+    color: COMPONENT_COLOR
   },
   // Measurement Techniques
   {
@@ -314,7 +350,8 @@ const myNodes = [
     col: COL_4,
     row: ROW_1,
     size: NODE_SIZE,
-    url: MEASUREMENT_TECHNIQUE.lighting_fixture_runtime.url
+    url: MEASUREMENT_TECHNIQUE.lighting_fixture_runtime.url,
+    color: MT_COLOR
   },
   {
     key: MEASUREMENT_TECHNIQUE.true_rms_power.key,
@@ -322,7 +359,8 @@ const myNodes = [
     col: COL_4,
     row: ROW_2,
     size: NODE_SIZE,
-    url: MEASUREMENT_TECHNIQUE.true_rms_power.url
+    url: MEASUREMENT_TECHNIQUE.true_rms_power.url,
+    color: MT_COLOR
   },
   {
     key: MEASUREMENT_TECHNIQUE.electrical_spot_measurements.key,
@@ -330,7 +368,8 @@ const myNodes = [
     col: COL_4,
     row: ROW_4,
     size: NODE_SIZE,
-    url: MEASUREMENT_TECHNIQUE.electrical_spot_measurements.url
+    url: MEASUREMENT_TECHNIQUE.electrical_spot_measurements.url,
+    color: MT_COLOR
   },
   {
     key: MEASUREMENT_TECHNIQUE.electrical_current.key,
@@ -338,7 +377,8 @@ const myNodes = [
     col: COL_4,
     row: ROW_5,
     size: NODE_SIZE,
-    url: MEASUREMENT_TECHNIQUE.electrical_current.url
+    url: MEASUREMENT_TECHNIQUE.electrical_current.url,
+    color: MT_COLOR
   },
   {
     key: MEASUREMENT_TECHNIQUE.motor_runtime.key,
@@ -346,7 +386,8 @@ const myNodes = [
     col: COL_4,
     row: ROW_6,
     size: NODE_SIZE,
-    url: MEASUREMENT_TECHNIQUE.motor_runtime.url
+    url: MEASUREMENT_TECHNIQUE.motor_runtime.url,
+    color: MT_COLOR
   },
   {
     key: MEASUREMENT_TECHNIQUE.outdoor_air_temp.key,
@@ -354,7 +395,8 @@ const myNodes = [
     col: COL_4,
     row: ROW_7,
     size: NODE_SIZE,
-    url: MEASUREMENT_TECHNIQUE.outdoor_air_temp.url
+    url: MEASUREMENT_TECHNIQUE.outdoor_air_temp.url,
+    color: MT_COLOR
   },
   {
     key: MEASUREMENT_TECHNIQUE.pipe_surface_water_temp.key,
@@ -362,7 +404,8 @@ const myNodes = [
     col: COL_4,
     row: ROW_8,
     size: NODE_SIZE,
-    url: MEASUREMENT_TECHNIQUE.pipe_surface_water_temp.url
+    url: MEASUREMENT_TECHNIQUE.pipe_surface_water_temp.url,
+    color: MT_COLOR
   },
   {
     key: MEASUREMENT_TECHNIQUE.water_flow_rate.key,
@@ -370,7 +413,8 @@ const myNodes = [
     col: COL_4,
     row: ROW_9,
     size: NODE_SIZE,
-    url: MEASUREMENT_TECHNIQUE.water_flow_rate.url
+    url: MEASUREMENT_TECHNIQUE.water_flow_rate.url,
+    color: MT_COLOR
   },
   {
     key: MEASUREMENT_TECHNIQUE.relative_humid.key,
@@ -378,7 +422,8 @@ const myNodes = [
     col: COL_4,
     row: ROW_11,
     size: NODE_SIZE,
-    url: MEASUREMENT_TECHNIQUE.relative_humid.url
+    url: MEASUREMENT_TECHNIQUE.relative_humid.url,
+    color: MT_COLOR
   },
   {
     key: MEASUREMENT_TECHNIQUE.air_flow_rate.key,
@@ -386,7 +431,8 @@ const myNodes = [
     col: COL_4,
     row: ROW_13,
     size: NODE_SIZE,
-    url: MEASUREMENT_TECHNIQUE.air_flow_rate.url
+    url: MEASUREMENT_TECHNIQUE.air_flow_rate.url,
+    color: MT_COLOR
   },
   {
     key: MEASUREMENT_TECHNIQUE.system_air_temp.key,
@@ -394,7 +440,8 @@ const myNodes = [
     col: COL_4,
     row: ROW_15,
     size: NODE_SIZE,
-    url: MEASUREMENT_TECHNIQUE.system_air_temp.url
+    url: MEASUREMENT_TECHNIQUE.system_air_temp.url,
+    color: MT_COLOR
   },
   // Calculation Methodology
   {
@@ -403,7 +450,8 @@ const myNodes = [
     col: COL_5,
     row: ROW_1,
     size: NODE_SIZE,
-    url: CALCULATION_METHODOLOGY.lighting_energy_consumption.url
+    url: CALCULATION_METHODOLOGY.lighting_energy_consumption.url,
+    color: CM_COLOR
   },
   {
     key: CALCULATION_METHODOLOGY.pump_motors_energy_consumption.key,
@@ -411,7 +459,8 @@ const myNodes = [
     col: COL_5,
     row: ROW_2,
     size: NODE_SIZE,
-    url: CALCULATION_METHODOLOGY.pump_motors_energy_consumption.url
+    url: CALCULATION_METHODOLOGY.pump_motors_energy_consumption.url,
+    color: CM_COLOR
   },
   {
     key: CALCULATION_METHODOLOGY.air_cooled_chiller_energy_consumption.key,
@@ -419,7 +468,8 @@ const myNodes = [
     col: COL_5,
     row: ROW_3,
     size: NODE_SIZE,
-    url: CALCULATION_METHODOLOGY.air_cooled_chiller_energy_consumption.url
+    url: CALCULATION_METHODOLOGY.air_cooled_chiller_energy_consumption.url,
+    color: CM_COLOR
   },
   {
     key: CALCULATION_METHODOLOGY.cooling_towers_fans_energy_consumption.key,
@@ -427,7 +477,8 @@ const myNodes = [
     col: COL_5,
     row: ROW_5,
     size: NODE_SIZE,
-    url: CALCULATION_METHODOLOGY.cooling_towers_fans_energy_consumption.url
+    url: CALCULATION_METHODOLOGY.cooling_towers_fans_energy_consumption.url,
+    color: CM_COLOR
   },
   {
     key: CALCULATION_METHODOLOGY.water_cooled_chiller_energy_consumption.key,
@@ -435,7 +486,8 @@ const myNodes = [
     col: COL_5,
     row: ROW_7,
     size: NODE_SIZE,
-    url: CALCULATION_METHODOLOGY.water_cooled_chiller_energy_consumption.url
+    url: CALCULATION_METHODOLOGY.water_cooled_chiller_energy_consumption.url,
+    color: CM_COLOR
   },
   {
     key: CALCULATION_METHODOLOGY.fan_motor_energy_consumption.key,
@@ -443,7 +495,8 @@ const myNodes = [
     col: COL_5,
     row: ROW_10,
     size: NODE_SIZE,
-    url: CALCULATION_METHODOLOGY.fan_motor_energy_consumption.url
+    url: CALCULATION_METHODOLOGY.fan_motor_energy_consumption.url,
+    color: CM_COLOR
   },
   {
     key: CALCULATION_METHODOLOGY.liquid_to_liquid_heat_exchanger_heat_transfer.key,
@@ -451,7 +504,8 @@ const myNodes = [
     col: COL_5,
     row: ROW_13,
     size: NODE_SIZE,
-    url: CALCULATION_METHODOLOGY.liquid_to_liquid_heat_exchanger_heat_transfer.url
+    url: CALCULATION_METHODOLOGY.liquid_to_liquid_heat_exchanger_heat_transfer.url,
+    color: CM_COLOR
   },
   {
     key: CALCULATION_METHODOLOGY.air_to_air_heat_exchanger_heat_transfer.key,
@@ -459,7 +513,8 @@ const myNodes = [
     col: COL_5,
     row: ROW_15,
     size: NODE_SIZE,
-    url: CALCULATION_METHODOLOGY.air_to_air_heat_exchanger_heat_transfer.url
+    url: CALCULATION_METHODOLOGY.air_to_air_heat_exchanger_heat_transfer.url,
+    color: CM_COLOR
   }
 ]
 
@@ -472,7 +527,8 @@ myNodes.forEach(value => {
     y: value.row,
     size: value.size,
     url: value.url,
-    type: "gradient"
+    type: "gradient",
+    color: value.color
   })
 })
 
@@ -1052,7 +1108,8 @@ const renderer = new Sigma(graph, container, {
   nodeProgramClasses: {
     square: NodeCircleProgram,
     circle: NodeCircleProgram,
-    gradient: NodeGradientProgram
+    gradient: NodeGradientProgram,
+    bordered: NodeBorderProgram
   },
   edgeProgramClasses: {
     straight: EdgeArrowProgram,
