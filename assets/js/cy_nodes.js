@@ -92,12 +92,11 @@ export default [
     },
     position: {x: COL_1, y: 200}
   },
-
   {
     data: {
-      id: COMPONENTS.const_spd_const_vol_compressor_motor.key,
-      name: COMPONENTS.const_spd_const_vol_compressor_motor.name,
-      url: COMPONENTS.const_spd_const_vol_compressor_motor.url
+      id: COMPONENTS.var_spd_var_vol_pump_motor.key,
+      name: COMPONENTS.var_spd_var_vol_pump_motor.name,
+      url: COMPONENTS.var_spd_var_vol_pump_motor.url
     },
     position: {x: COL_3, y: 200}
   },
@@ -138,6 +137,14 @@ export default [
       url: SYSTEMS.chilled_water_loop.url
     },
     position: {x: COL_2, y: 400}
+  },
+  {
+    data: {
+      id: COMPONENTS.const_spd_const_vol_compressor_motor.key,
+      name: COMPONENTS.const_spd_const_vol_compressor_motor.name,
+      url: COMPONENTS.const_spd_const_vol_compressor_motor.url
+    },
+    position: {x: COL_3, y: 400}
   },
   {
     data: {
@@ -192,14 +199,6 @@ export default [
       url: SYSTEMS.water_cooled_chiller.url
     },
     position: {x: COL_2, y: 600}
-  },
-  {
-    data: {
-      id: COMPONENTS.var_spd_var_vol_compressor_motor.key,
-      name: COMPONENTS.var_spd_var_vol_compressor_motor.name,
-      url: COMPONENTS.var_spd_var_vol_compressor_motor.url
-    },
-    position: {x: COL_3, y: 600}
   },
   {
     data: {

@@ -123,6 +123,18 @@ export default [
       target: COMPONENTS.const_spd_const_vol_pump_motor.key
     }
   },
+  {
+    data: {
+      source: COMPONENTS.var_spd_var_vol_pump_motor.key,
+      target: MEASUREMENT_TECHNIQUE.true_rms_power.key
+    }
+  },
+  {
+    data: {
+      source: COMPONENTS.var_spd_var_vol_pump_motor.key,
+      target: MEASUREMENT_TECHNIQUE.outdoor_air_temp.key
+    }
+  },
   /**
    * 4th row
    */
@@ -130,12 +142,6 @@ export default [
     data: {
       source: SYSTEMS.air_cooled_chiller_s.key,
       target: COMPONENTS.const_spd_const_vol_compressor_motor.key
-    }
-  },
-  {
-    data: {
-      source: SYSTEMS.air_cooled_chiller_s.key,
-      target: COMPONENTS.var_spd_var_vol_compressor_motor.key
     }
   },
   {
@@ -277,36 +283,6 @@ export default [
     data: {
       source: SYSTEMS.water_cooled_chiller.key,
       target: COMPONENTS.const_spd_const_vol_compressor_motor.key
-    }
-  },
-  {
-    data: {
-      source: SYSTEMS.water_cooled_chiller.key,
-      target: COMPONENTS.var_spd_var_vol_compressor_motor.key
-    }
-  },
-  {
-    data: {
-      source: COMPONENTS.var_spd_var_vol_compressor_motor.key,
-      target: MEASUREMENT_TECHNIQUE.true_rms_power.key
-    }
-  },
-  {
-    data: {
-      source: COMPONENTS.var_spd_var_vol_compressor_motor.key,
-      target: MEASUREMENT_TECHNIQUE.outdoor_air_temp.key
-    }
-  },
-  {
-    data: {
-      source: COMPONENTS.var_spd_var_vol_compressor_motor.key,
-      target: MEASUREMENT_TECHNIQUE.pipe_surface_water_temp.key
-    }
-  },
-  {
-    data: {
-      source: COMPONENTS.var_spd_var_vol_compressor_motor.key,
-      target: MEASUREMENT_TECHNIQUE.water_flow_rate.key
     }
   },
   {
@@ -523,6 +499,12 @@ export default [
     data: {
       source: SYSTEMS.steam_distribution_s.key,
       target: COMPONENTS.const_spd_const_vol_pump_motor.key
+    }
+  },
+  {
+    data: {
+      source: SYSTEMS.steam_distribution_s.key,
+      target: COMPONENTS.var_spd_var_vol_pump_motor.key
     }
   },
 ]
