@@ -12,7 +12,7 @@ uniform mat3 u_matrix;
 varying vec4 v_color;
 varying float v_border;
 
-const float bias = 255.0 / 254.0;
+const float bias = 255.0 / 255.0;
 
 void main() {
   gl_Position = vec4(
@@ -24,7 +24,8 @@ void main() {
   // Multiply the point size twice:
   //  - x SCALING_RATIO to correct the canvas scaling
   //  - x 2 to correct the formulae
-  gl_PointSize = a_size / u_sizeRatio * u_pixelRatio * 2.75;
+  // gl_PointSize = a_size / u_sizeRatio * u_pixelRatio * 1.75;
+  gl_PointSize = a_size / u_sizeRatio * u_pixelRatio * 2.20;
 
   v_border = (0.75 / a_size) * u_sizeRatio;
 

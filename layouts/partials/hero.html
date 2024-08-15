@@ -1,24 +1,13 @@
-<div class="container-fluid">
-  Legend:
-  <ul>
-    <li><span style="color:#148f77">&#9632;</span>Plant</li>
-    <li><span style="color:#1f618d">&#9632;</span>Systems</li>
-    <li><span style="color:#76448a">&#9632;</span>Component</li>
-    <li><span style="color:#b03a2e">&#9632;</span>Measurement Techniques</li>
-    <li><span style="color:#f1c40f">&#9632;</span>Calculation Methodology</li>
-  </ul>
-</div>
-<section class="d-flex flex-column">
-  <section class="container-fluid">
-    <div id="first-table" class="border" style="width: 80%; height: 1200px;"></div>
-  </section>
-</section>
+<div id="cy" class="container-fluid border my-5">
 
-{{ with resources.Get "js/main.js" }}
+
+{{ with resources.Get "js/cy.js" }}
   {{ with . | js.Build }}
       <script src="{{ .RelPermalink }}"></script>
   {{ end }}
 {{ end }}
+
+</div>
 
 
 

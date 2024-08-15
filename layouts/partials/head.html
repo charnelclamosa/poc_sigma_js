@@ -12,6 +12,10 @@
   <link href="//cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <script src="//cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
+  <!-- Cytoscape.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js" integrity="sha512-EY3U1MWdgKx0P1dqTE4inlKz2cpXtWpsR1YUyD855Hs6RL/A0cyvrKh60EpE8wDZ814cTe1KgRK+sG0Rn792vQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
   {{ "<!-- Font Awesome -->" | safeHTML }}
 
   <link rel="stylesheet" href="{{ "plugins/font-awesome/css/font-awesome.min.css" | relURL }}" />
@@ -21,5 +25,12 @@
   <link href="{{ $style.Permalink }}" rel="stylesheet" />
 
   {{ partialCached "js.html" . }}
+  <style>
+    #cy {
+      width: 95%;
+      height: 1600px;
+      display: block;
+    }
+  </style>
 
 </head>

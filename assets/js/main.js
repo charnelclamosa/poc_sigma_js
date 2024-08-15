@@ -1,14 +1,14 @@
 import Sigma from "sigma"
 import { Graph } from "graphology";
 import { createNodeImageProgram } from "@sigma/node-image"
-import { NodeBorderProgram } from "@sigma/node-border";
+import { NodeBorderProgram, createNodeBorderProgram } from "@sigma/node-border";
 import {
   DEFAULT_EDGE_CURVATURE,
   EdgeCurvedArrowProgram,
   indexParallelEdgesIndex
 } from "@sigma/edge-curve"
-import { EdgeArrowProgram, NodeCircleProgram } from "sigma/rendering"
-import nodes_config from "./nodes"
+import { drawDiscNodeLabel, EdgeArrowProgram, NodeCircleProgram, createNodeCompoundProgram } from "sigma/rendering"
+import nodes_config from "./nodes_config"
 import NodeGradientProgram from "./node-gradient";
 
 const PLANTS = nodes_config.plants
@@ -1101,15 +1101,20 @@ graph.addEdge(
   { size: EDGE_SIZE }
 )
 
+const NodeBorderCustomProgram = createNodeBorderProgram({
+  borders: [
+    { size: { value: 0.1 }, color: { attribute: "pictoColor" } },
+    {size: { fill: true }, color: { attribute: "color" }}
+  ]
+})
+
+const CustomNodeProgram = createNodeCompoundProgram([NodeBorderCustomProgram, NodeCircleProgram])
+
 const renderer = new Sigma(graph, container, {
   allowInvalidContainer: true,
   defaultEdgeType: "straight",
-  defaultNodeType: "square",
   nodeProgramClasses: {
-    square: NodeCircleProgram,
-    circle: NodeCircleProgram,
     gradient: NodeGradientProgram,
-    bordered: NodeBorderProgram
   },
   edgeProgramClasses: {
     straight: EdgeArrowProgram,
