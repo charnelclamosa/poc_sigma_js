@@ -58,6 +58,9 @@ var cy = cytoscape({
   }
 })
 
+// Lock the nodes and edges?
+// cy.autolock( true );
+
 cy.on('tap', (evt) => {
   if(evt.target === cy) {
     removeHighlighted()
@@ -91,7 +94,6 @@ cy.on('mouseover', 'node', (evt) => {
   if(evt.cy.container && evt.target.data().url.length > 0) {
     evt.cy.container().style.cursor = 'pointer';
   }
-
 })
 
 cy.on('mouseout', 'node', (evt) => {
