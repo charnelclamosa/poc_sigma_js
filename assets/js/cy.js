@@ -88,6 +88,12 @@ cy.on('tap', 'node', (evt) => {
 
   highlightNextEle()
   fadeUnselected()
+
+  try {
+    window.open(evt.target.data('url'))
+  } catch (error) {
+    window.location.href = evt.target.data('href');
+  }
 })
 
 cy.on('mouseover', 'node', (evt) => {
