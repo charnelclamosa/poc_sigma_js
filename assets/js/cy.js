@@ -38,6 +38,12 @@ var cy = cytoscape({
       classes: ['multiline-auto']
     },
     {
+      selector: '.faded',
+      style: {
+        'opacity': 0.2
+      }
+    },
+    {
       selector: '.highlighted',
       style: {
         'border-color': 'green',
@@ -52,20 +58,22 @@ var cy = cytoscape({
   }
 })
 cy.zoomingEnabled(false)
-cy.on('click', 'node', (event) => {
-  var connectedEdges = event.target.successors()
-  var targetEdges = cy.edges(`edge[source='${event.target.data('id')}']`)
-  var children = targetEdges.targets()
-  console.log(children)
+
+cy.on('tap', (evt) => {
+  if(evt.target === cy) {
+    removeHighlighted()
+    removeFaded()
+  }
+})
+cy.on('tap', 'node', (evt) => {
   var i = 0
-  // console.log(event.target.data())
-  cy.nodes().map((x) => {
-    x.removeClass('highlighted')
-  })
-  cy.edges().map((x) => {
-    x.removeClass('highlighted')
-  })
-  event.target.addClass('highlighted')
+  var targetEdges = cy.edges(`edge[source='${evt.target.data('id')}']`)
+  var children = targetEdges.targets()
+  
+  removeHighlighted()
+  removeFaded()
+
+  evt.target.addClass('highlighted')
 
   var highlightNextEle = () => {
     if(i < children.length) {
@@ -75,18 +83,54 @@ cy.on('click', 'node', (event) => {
       highlightNextEle()
     }
   }
+
   highlightNextEle()
+  fadeUnselected()
 })
 
-cy.on('mouseover', 'node', (event) => {
-  if(event.cy.container && event.target.data().url.length > 0) {
-    event.cy.container().style.cursor = 'pointer';
+cy.on('mouseover', 'node', (evt) => {
+  if(evt.cy.container && evt.target.data().url.length > 0) {
+    evt.cy.container().style.cursor = 'pointer';
   }
 
 })
 
-cy.on('mouseout', 'node', (event) => {
-  if(event.cy.container) {
-    event.cy.container().style.cursor = 'default';
+cy.on('mouseout', 'node', (evt) => {
+  if(evt.cy.container) {
+    evt.cy.container().style.cursor = 'default';
   }
 })
+
+function fadeUnselected() {
+  var allNodes = cy.nodes()
+  var allEdges = cy.edges()
+
+  allNodes.map((node) => {
+    if(node.classes().length == 0) {
+      node.addClass('faded')
+    }
+  })
+  allEdges.map((edge) => {
+    if(edge.classes().length == 0) {
+      edge.addClass('faded')
+    }
+  })
+}
+
+function removeHighlighted() {
+  cy.nodes().map((x) => {
+    x.removeClass('highlighted')
+  })
+  cy.edges().map((x) => {
+    x.removeClass('highlighted')
+  })
+}
+
+function removeFaded() {
+  cy.nodes().map((node) => {
+    node.removeClass('faded')
+  })
+  cy.edges().map((edge) => {
+    edge.removeClass('faded')
+  })
+}
