@@ -54,6 +54,9 @@ var cy = cytoscape({
 cy.zoomingEnabled(false)
 cy.on('click', 'node', (event) => {
   var connectedEdges = event.target.successors()
+  var targetEdges = cy.edges(`edge[source='${event.target.data('id')}']`)
+  var children = targetEdges.targets()
+  console.log(children)
   var i = 0
   // console.log(event.target.data())
   cy.nodes().map((x) => {
@@ -65,9 +68,9 @@ cy.on('click', 'node', (event) => {
   event.target.addClass('highlighted')
 
   var highlightNextEle = () => {
-    if(i < connectedEdges.length) {
-      connectedEdges[i].addClass('highlighted')
-      console.log(connectedEdges[i].data())
+    if(i < children.length) {
+      children[i].addClass('highlighted')
+      targetEdges[i].addClass('highlighted')
       i++
       highlightNextEle()
     }
