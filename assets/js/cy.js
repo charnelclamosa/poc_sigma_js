@@ -59,7 +59,7 @@ var cy = cytoscape({
 })
 
 // Lock the nodes and edges?
-// cy.autolock( true );
+cy.autolock( true );
 
 cy.on('tap', (evt) => {
   if(evt.target === cy) {
