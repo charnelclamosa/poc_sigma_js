@@ -88,11 +88,14 @@ cy.on('tap', 'node', (evt) => {
 
   highlightNextEle()
   fadeUnselected()
-
-  try {
-    window.open(evt.target.data('url'))
-  } catch (error) {
-    window.location.href = evt.target.data('href');
+  
+  // Open URL of the node, if there is any
+  if(evt.target.data('url').length > 0) {
+    try {
+      window.open(evt.target.data('url'))
+    } catch (error) {
+      window.location.href = evt.target.data('href');
+    }
   }
 })
 
