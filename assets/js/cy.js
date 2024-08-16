@@ -57,7 +57,6 @@ var cy = cytoscape({
     name: 'preset'
   }
 })
-cy.zoomingEnabled(false)
 
 cy.on('tap', (evt) => {
   if(evt.target === cy) {
