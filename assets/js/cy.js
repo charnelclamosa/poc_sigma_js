@@ -53,6 +53,7 @@ var cy = cytoscape({
       }
     }
   ],
+  wheelSensitivity: 0.010,
   layout: {
     name: 'preset'
   }
@@ -144,3 +145,16 @@ function removeFaded() {
     edge.removeClass('faded')
   })
 }
+
+/**
+ * Graph controls
+ */
+$("#zoom-in").click(() => {
+  let currentZoom = cy.zoom()
+  cy.zoom(currentZoom + 0.050)
+})
+
+$("#zoom-out").click(() => {
+  let currentZoom = cy.zoom()
+  cy.zoom(currentZoom - 0.050)
+})
