@@ -53,7 +53,7 @@ var cy = cytoscape({
       }
     }
   ],
-  wheelSensitivity: 0.010,
+  wheelSensitivity: 0,
   layout: {
     name: 'preset'
   }
