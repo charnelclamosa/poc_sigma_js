@@ -1,25 +1,27 @@
 import my_nodes from "./cy_nodes"
 import my_edges from "./cy_edges"
+import cytoscape_dom_node from "./cytoscape-dom-node"
+
+cytoscape.use(cytoscape_dom_node);
 
 var cy = cytoscape({
   container: $('#cy'),
-  elements: {nodes: my_nodes, edges: my_edges},
+  // elements: {nodes: my_nodes, edges: my_edges},
+  elements: [],
   style: [
     {
       selector: 'node',
       style: {
-        'background-color': '#ecf0f1 ',
-        'label': 'data(id)',
-        'shape': 'rectangle',
-        'width': 250,
-        'height': 55,
-        'border-width': 1,
-        'border-color': 'black',
-        'content': 'data(name)',
-        'text-valign': 'center',
-        'color': 'black',
-        'text-max-width': 225,
-        'text-wrap': 'wrap'
+        'background-color': 'white',
+        // 'shape': 'rectangle',
+        // 'width': 250,
+        // 'height': 55,
+        'border-width': 2,
+        'border-color': '#239b56',
+        // 'text-valign': 'center',
+        // 'color': 'black',
+        // 'text-max-width': 225,
+        // 'text-wrap': 'wrap'
       }
     },
     {
@@ -59,6 +61,44 @@ var cy = cytoscape({
   }
 })
 
+cy.domNode();
+
+my_nodes.forEach((node) => {
+  console.log()
+  let div = document.createElement("div");
+  if(node.data.url.length > 0) {
+    div.innerHTML = `
+    <div id='${node.data.id}' class='d-flex p-2 text-center justify-content-center align-items-center' style='width: 175px;'>
+      <span>${node.data.name} <button class='btn btn-outline-primary px-1 py-0' onclick="window.open('${node.data.url}')">
+        <i class="fa fa-external-link" aria-hidden="true"></i></button></span>
+    </div>`;
+  } else {
+    div.innerHTML = `
+    <div id='${node.data.id}' class='d-flex p-2 text-center justify-content-center align-items-center' style='width: 175px;'>
+      <span>${node.data.name}</span>
+    </div>`;
+  }
+  
+  cy.add({
+    data: {
+      id: node.data.id,
+      dom: div,
+      url: node.data.url
+    },
+    position: {x: node.position.x, y: node.position.y}
+  })
+})
+
+my_edges.forEach((edge) => {
+  cy.add({
+    data: {
+      source: edge.data.source,
+      target: edge.data.target
+    }
+  })
+})
+
+
 // Lock the nodes and edges?
 cy.autolock( true );
 
@@ -72,7 +112,7 @@ cy.on('tap', 'node', (evt) => {
   var i = 0
   var targetEdges = cy.edges(`edge[source='${evt.target.data('id')}']`)
   var children = targetEdges.targets()
-  
+
   removeHighlighted()
   removeFaded()
 
@@ -89,27 +129,6 @@ cy.on('tap', 'node', (evt) => {
 
   highlightNextEle()
   fadeUnselected()
-  
-  // Open URL of the node, if there is any
-  if(evt.target.data('url').length > 0) {
-    try {
-      window.open(evt.target.data('url'))
-    } catch (error) {
-      window.location.href = evt.target.data('href');
-    }
-  }
-})
-
-cy.on('mouseover', 'node', (evt) => {
-  if(evt.cy.container && evt.target.data().url.length > 0) {
-    evt.cy.container().style.cursor = 'pointer';
-  }
-})
-
-cy.on('mouseout', 'node', (evt) => {
-  if(evt.cy.container) {
-    evt.cy.container().style.cursor = 'default';
-  }
 })
 
 function fadeUnselected() {
@@ -119,6 +138,7 @@ function fadeUnselected() {
   allNodes.map((node) => {
     if(node.classes().length == 0) {
       node.addClass('faded')
+      $( `#${node.data().id}` ).addClass( "opacity-25" );
     }
   })
   allEdges.map((edge) => {
@@ -140,6 +160,7 @@ function removeHighlighted() {
 function removeFaded() {
   cy.nodes().map((node) => {
     node.removeClass('faded')
+    $( `#${node.data().id}` ).removeClass( "opacity-25" );
   })
   cy.edges().map((edge) => {
     edge.removeClass('faded')

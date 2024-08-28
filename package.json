@@ -1,19 +1,11 @@
 {
   "name": "poc.sitemap",
   "version": "1.0.0",
-  "description": "POC of Sigma.js",
+  "description": "POC of Cytoscape.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@sigma/edge-curve": "^3.0.0-beta.13",
-    "@sigma/node-border": "^3.0.0-beta.4",
-    "@sigma/node-image": "^3.0.0-beta.12",
-    "dayjs": "^1.11.11",
-    "graphology": "^0.25.4",
-    "sigma": "^3.0.0-beta.24"
-  }
+  "license": "ISC"
 }
