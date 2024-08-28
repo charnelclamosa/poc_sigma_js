@@ -6,22 +6,14 @@ cytoscape.use(cytoscape_dom_node);
 
 var cy = cytoscape({
   container: $('#cy'),
-  // elements: {nodes: my_nodes, edges: my_edges},
   elements: [],
   style: [
     {
       selector: 'node',
       style: {
         'background-color': 'white',
-        // 'shape': 'rectangle',
-        // 'width': 250,
-        // 'height': 55,
         'border-width': 2,
         'border-color': '#239b56',
-        // 'text-valign': 'center',
-        // 'color': 'black',
-        // 'text-max-width': 225,
-        // 'text-wrap': 'wrap'
       }
     },
     {
@@ -63,8 +55,10 @@ var cy = cytoscape({
 
 cy.domNode();
 
+/**
+ * Add the HTML nodes.
+ */
 my_nodes.forEach((node) => {
-  console.log()
   let div = document.createElement("div");
   if(node.data.url.length > 0) {
     div.innerHTML = `
@@ -89,6 +83,9 @@ my_nodes.forEach((node) => {
   })
 })
 
+/**
+ * Add the edges.
+ */
 my_edges.forEach((edge) => {
   cy.add({
     data: {
@@ -98,16 +95,24 @@ my_edges.forEach((edge) => {
   })
 })
 
-
-// Lock the nodes and edges?
+// Lock the nodes and edges
 cy.autolock( true );
 
+/**
+ * Tap control that removes all highlighted nodes, and edges
+ * when user clicks the graph body.
+ */
 cy.on('tap', (evt) => {
   if(evt.target === cy) {
     removeHighlighted()
     removeFaded()
   }
 })
+
+/**
+ * Tap control that highlights the selected node along with edges
+ * to targets, and source.
+ */
 cy.on('tap', 'node', (evt) => {
   var i = 0
   var targetEdges = cy.edges(`edge[source='${evt.target.data('id')}']`)
@@ -115,6 +120,13 @@ cy.on('tap', 'node', (evt) => {
 
   removeHighlighted()
   removeFaded()
+
+  let sourceEdges = cy.elements(`edge[target="${evt.target.data('id')}"]`)
+  sourceEdges.addClass('highlighted')
+  sourceEdges.forEach((elem) => {
+    let sourceNode = cy.elements(`node[id="${elem.data('source')}"]`)
+    sourceNode.addClass('highlighted')
+  })
 
   evt.target.addClass('highlighted')
 
@@ -131,6 +143,9 @@ cy.on('tap', 'node', (evt) => {
   fadeUnselected()
 })
 
+/**
+ * Function for applying opacity to unselected nodes.
+ */
 function fadeUnselected() {
   var allNodes = cy.nodes()
   var allEdges = cy.edges()
@@ -148,6 +163,9 @@ function fadeUnselected() {
   })
 }
 
+/**
+ * Function for removing the highlight effect in all nodes, and edges.
+ */
 function removeHighlighted() {
   cy.nodes().map((x) => {
     x.removeClass('highlighted')
@@ -157,6 +175,9 @@ function removeHighlighted() {
   })
 }
 
+/**
+ * Function for removing the opacity effect in all nodes, and edges.
+ */
 function removeFaded() {
   cy.nodes().map((node) => {
     node.removeClass('faded')
@@ -168,13 +189,12 @@ function removeFaded() {
 }
 
 /**
- * Graph controls
+ * Graph controls on the right side of the graph.
  */
 $("#zoom-in").click(() => {
   let currentZoom = cy.zoom()
   cy.zoom(currentZoom + 0.050)
 })
-
 $("#zoom-out").click(() => {
   let currentZoom = cy.zoom()
   cy.zoom(currentZoom - 0.050)
