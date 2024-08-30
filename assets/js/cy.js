@@ -48,6 +48,7 @@ var cy = cytoscape({
     }
   ],
   wheelSensitivity: 0,
+  hideEdgesOnViewport: true,
   layout: {
     name: 'preset'
   }
