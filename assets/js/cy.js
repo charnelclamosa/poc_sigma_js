@@ -24,7 +24,7 @@ var cy = cytoscape({
         'target-arrow-color': '#ccc',
         'target-arrow-shape': 'triangle',
         'curve-style': 'round-taxi',
-        "taxi-turn": 15,
+        "taxi-turn": 10,
         "taxi-turn-min-distance": 5,
         "taxi-radius": 5,
         
@@ -96,7 +96,7 @@ my_edges.forEach((edge) => {
 })
 
 // Lock the nodes and edges
-cy.autolock( true );
+// cy.autolock( true );
 
 /**
  * Tap control that removes all highlighted nodes, and edges
