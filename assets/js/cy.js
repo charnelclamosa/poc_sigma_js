@@ -19,7 +19,6 @@ var cy = cytoscape({
     {
       selector: 'edge',
       style: {
-        'width': 3,
         'line-color': '#ccc',
         'target-arrow-color': '#ccc',
         'target-arrow-shape': 'triangle',
@@ -48,7 +47,6 @@ var cy = cytoscape({
     }
   ],
   wheelSensitivity: 0,
-  hideEdgesOnViewport: true,
   layout: {
     name: 'preset'
   }
