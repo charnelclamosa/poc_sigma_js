@@ -149,13 +149,13 @@ function fadeUnselected() {
   var allNodes = cy.nodes()
   var allEdges = cy.edges()
 
-  allNodes.map((node) => {
+  allNodes.forEach((node) => {
     if(node.classes().length == 0) {
       node.addClass('faded')
       $( `#${node.data().id}` ).addClass( "opacity-25" );
     }
   })
-  allEdges.map((edge) => {
+  allEdges.forEach((edge) => {
     if(edge.classes().length == 0) {
       edge.addClass('faded')
     }
