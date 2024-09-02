@@ -10,7 +10,7 @@ var cy = cytoscape({
     {
       selector: 'node',
       style: {
-        'background-color': 'white',
+        'background-color': '#d2e2d3',
         'border-width': 2,
         'border-color': '#239b56',
       }
@@ -63,13 +63,27 @@ my_nodes.forEach((node) => {
   if(node.data.url.length > 0) {
     div.innerHTML = `
     <div id='${node.data.id}' class='d-flex p-2 text-center justify-content-center align-items-center' style='width: 175px;'>
-      <span>${node.data.name} <button class='btn btn-outline-primary px-1 py-0' onclick="window.open('${node.data.url}')">
-        <i class="fa fa-external-link" aria-hidden="true"></i></button></span>
+      <div class='bg-dark'>
+        <img src="images/${node.data.icon}" class="img-fluid" style='position: block; min-width: 25px;'>
+      </div>
+      <div class='px-1'>
+        <span style='font-size: 11px;'>${node.data.name}</span>
+      </div>
+      <div class='px-1'>
+        <button class='btn btn-outline-primary px-1 py-0' onclick="window.open('${node.data.url}')">
+          <i class="fa fa-external-link" aria-hidden="true"></i>
+        </button>
+      </div>
     </div>`;
   } else {
     div.innerHTML = `
     <div id='${node.data.id}' class='d-flex p-2 text-center justify-content-center align-items-center' style='width: 175px;'>
-      <span>${node.data.name}</span>
+      <div class='bg-dark'>
+        <img src="images/plant-icon.png" class="img-fluid" style='position: block; min-width: 25px;'>
+      </div>
+      <div class='px-1'>
+        <span style='font-size: 11px;'>${node.data.name}</span>
+      </div>
     </div>`;
   }
   
@@ -196,6 +210,14 @@ $("#zoom-in").click(() => {
   cy.zoom(currentZoom + 0.050)
 })
 $("#zoom-out").click(() => {
+  let currentZoom = cy.zoom()
+  cy.zoom(currentZoom - 0.050)
+})
+$("#zoom-in").on('tap', () => {
+  let currentZoom = cy.zoom()
+  cy.zoom(currentZoom + 0.050)
+})
+$("#zoom-out").on('tap', () => {
   let currentZoom = cy.zoom()
   cy.zoom(currentZoom - 0.050)
 })
