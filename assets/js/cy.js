@@ -6,7 +6,6 @@ cytoscape.use(cytoscape_dom_node);
 
 var cy = cytoscape({
   container: $('#cy'),
-  elements: [],
   style: [
     {
       selector: 'node',
@@ -46,7 +45,9 @@ var cy = cytoscape({
       }
     }
   ],
+  pixelRatio: 1.0,
   wheelSensitivity: 0,
+  hideEdgesOnViewport: true,
   layout: {
     name: 'preset'
   }
