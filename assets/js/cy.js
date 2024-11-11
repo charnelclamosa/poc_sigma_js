@@ -61,7 +61,7 @@ my_nodes.forEach((node) => {
   let div = document.createElement("div");
   if(node.data.url.length > 0) {
     div.innerHTML = `
-    <div id='${node.data.id}' class='d-flex p-2 text-center justify-content-center align-items-center' style='width: 175px;'>
+    <div id='${node.data.id}' class='d-flex p-2 text-center justify-content-center align-items-center' style='width: 175px; font-family: Roboto;'>
       <div class='bg-dark'>
         <img src="images/${node.data.icon}" class="img-fluid" style='position: block; min-width: 25px;'>
       </div>
