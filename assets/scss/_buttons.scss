@@ -37,8 +37,8 @@
   color: $white;
   &:hover {
     border-color: $primary;
-    background-color: $secondary;
-    color: $white;
+    background-color: $white;
+    color: $primary;
   }
 }
 
