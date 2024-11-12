@@ -35,3 +35,7 @@ img[src*="#center"] {
 .box_shadow {
   box-shadow: 0 20px 40px rgba(50,65,141,.12);
 }
+
+.bg-primary {
+  background-color: $primary !important;
+}
