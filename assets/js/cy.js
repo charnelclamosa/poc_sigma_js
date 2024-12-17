@@ -12,7 +12,6 @@ var cy = cytoscape({
       style: {
         'background-color': '#d2e2d3',
         'font-family': 'Roboto',
-        'border-cap': 'round'
       },
     },
     {
@@ -43,7 +42,6 @@ var cy = cytoscape({
         'z-index': 999,
         'border-color': 'green',
         'border-width': 3,
-        'border-cap': 'round'
       }
     }
   ],
