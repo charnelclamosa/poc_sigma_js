@@ -64,7 +64,7 @@ my_nodes.forEach((node) => {
   if(node.data.url.length > 0) {
     div.innerHTML = `
     <div id='${node.data.id}' class='d-flex flex-row p-2 text-center justify-content-center align-items-center shadow rounded' style='width: 175px; border: 1px solid gray; border-radius: 5px;'>
-      <div>
+      <div class='px-1'>
         ${node.data.icon}
       </div>
       <div class='px-1'>
