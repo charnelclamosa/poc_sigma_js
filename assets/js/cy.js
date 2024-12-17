@@ -11,9 +11,9 @@ var cy = cytoscape({
       selector: 'node',
       style: {
         'background-color': '#d2e2d3',
-        'border-width': 2,
-        'border-color': '#239b56',
-      }
+        'font-family': 'Roboto',
+        'border-cap': 'round'
+      },
     },
     {
       selector: 'edge',
@@ -38,10 +38,12 @@ var cy = cytoscape({
     {
       selector: '.highlighted',
       style: {
+        'line-color': 'green',
+        'target-arrow-color': 'green',
+        'z-index': 999,
         'border-color': 'green',
         'border-width': 3,
-        'line-color': 'green',
-        'z-index': 999
+        'border-cap': 'round'
       }
     }
   ],
@@ -61,24 +63,24 @@ my_nodes.forEach((node) => {
   let div = document.createElement("div");
   if(node.data.url.length > 0) {
     div.innerHTML = `
-    <div id='${node.data.id}' class='d-flex p-2 text-center justify-content-center align-items-center' style='width: 175px; font-family: Roboto;'>
-      <div class='bg-dark'>
-        <img src="images/${node.data.icon}" class="img-fluid" style='position: block; min-width: 25px;'>
+    <div id='${node.data.id}' class='d-flex flex-row p-2 text-center justify-content-center align-items-center shadow rounded' style='width: 175px; border: 1px solid gray; border-radius: 5px;'>
+      <div>
+        ${node.data.icon}
       </div>
       <div class='px-1'>
         <span style='font-size: 11px;'>${node.data.name}</span>
       </div>
       <div class='px-1'>
-        <button class='btn btn-outline-primary px-1 py-0' onclick="window.open('${node.data.url}')">
-          <i class="fa fa-external-link" aria-hidden="true"></i>
+        <button class='btn btn-link px-1 py-0' style="color: #429049;" onclick="window.open('${node.data.url}')">
+          <i class="fa-solid fa-arrow-right fa-rotate-by fa-xl" style="--fa-rotate-angle: -45deg;"></i>
         </button>
       </div>
     </div>`;
   } else {
     div.innerHTML = `
-    <div id='${node.data.id}' class='d-flex p-2 text-center justify-content-center align-items-center' style='width: 175px;'>
-      <div class='bg-dark'>
-        <img src="images/plant-icon.png" class="img-fluid" style='position: block; min-width: 25px;'>
+    <div id='${node.data.id}' class='d-flex flex-row p-2 text-center justify-content-center align-items-center shadow rounded' style='width: 175px; border: 1px solid gray; border-radius: 5px;'>
+      <div>
+        ${node.data.icon}
       </div>
       <div class='px-1'>
         <span style='font-size: 11px;'>${node.data.name}</span>

@@ -17,7 +17,7 @@
 
   {{ "<!-- Font Awesome -->" | safeHTML }}
 
-  <link rel="stylesheet" href="{{ "plugins/font-awesome/css/font-awesome.min.css" | relURL }}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   {{ "<!-- Stylesheets -->" | safeHTML }}
   {{ $style := resources.Get "scss/custom.scss" | resources.ToCSS | minify }}
